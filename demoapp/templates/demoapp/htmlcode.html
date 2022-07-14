@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ApplyAway</title>
+<style>
+  td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  background-color: white;
+  hover {background-color: yellow;
+}
+
+
+tr:hover {background-color: yellow;}
+
+</style>
+
+</head>
+
+{%if user.is_authenticated%}
+<h1>Hello {{user.first_name}}
+<h1><a href="accounts/logout">Logout</a></h1>
+{%else%}
+<h1><a href="accounts/register">Register</a></h1><br>
+<h1><a href="accounts/login">Login</a></h1>
+  {%endif%}
+<body bgcolor="cyan">
+<center><h1>ApplyAway</h1></center>
+
+	<center>
+
+	<table>
+
+      <th>url</th>
+    <th>Company</th>
+    <th>Description</th>
+        <th>Job</th>
+        <th>Notes</th>
+
+
+
+      {% for data in datas %}
+  <tr>
+      {%if data.user == user.username %}
+          <td><center>{{data.url}}</center></td>
+    <td><center>{{data.Company}}</center></td>
+          <td><center>{{data.Description}}</center></td>
+       <td><center>{{data.Job}}</center></td>
+       <td><center>{{data.Notes}}</center></td>
+        {%endif%}
+  </tr>
+      {% endfor %}
+
+
+</table>
+</center>
+</body>
+</html>
