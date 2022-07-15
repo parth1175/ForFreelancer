@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+
+import django_heroku
 import dj_database_url
 from pathlib import Path
 
@@ -23,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*3tgx3&t=x)uk$w3q40kg=lz+ew06q^l(gk@g+5j$6ymyaz&0n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,7 +83,7 @@ DATABASES = {
         'USER':'postgres',
         'PASSWORD':'firstphone13',
         'HOST':'localhost'
-    },
+    }
 #    'Heroku' : {
 #        'Host': 'ec2-52-71-23-11.compute-1.amazonaws.com',
 #        'Database' : 'd29ccg0pfonse8',
@@ -135,5 +137,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DATABASES['default']=dj_database_url.config(conn_max_age=600, ssl_require=True)
+#DATABASES['default']=dj_database_url.config(conn_max_age=600, ssl_require=True)
 ALLOWED_HOSTS = ['*']
+
+django_heroku.settings(locals())
