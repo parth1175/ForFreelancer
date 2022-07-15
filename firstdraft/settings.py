@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -81,7 +81,17 @@ DATABASES = {
         'USER':'postgres',
         'PASSWORD':'firstphone13',
         'HOST':'localhost'
-    }
+    },
+#    'Heroku' : {
+#        'Host': 'ec2-52-71-23-11.compute-1.amazonaws.com',
+#        'Database' : 'd29ccg0pfonse8',
+#        'User' : 'kskrrybbrejcuv',
+#        'Port' : '5432',
+#        'Password' : '2503a41ba0ffcc028e92d1a063a3e2caf0722208fef3d1b92659bc10b5b777af',
+#        'URI' : 'postgres://kskrrybbrejcuv:2503a41ba0ffcc028e92d1a063a3e2caf0722208fef3d1b92659bc10b5b777af@ec2-52-71-23-11.compute-1.amazonaws.com:5432/d29ccg0pfonse8',
+#        'Heroku CLI' : 'heroku pg:psql postgresql-defined-43159 --app applyawaylaunch'
+#    }
+
 }
 
 
@@ -125,3 +135,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DATABASES['default']=dj_database_url.config(conn_max_age=600, ssl_require=True)
+ALLOWED_HOSTS = ['*']
