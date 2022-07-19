@@ -8,14 +8,13 @@
   border: 1px solid black;
   border-collapse: collapse;
   background-color: white;
-  hover {background-color: yellow;
 }
 
 
-tr:hover {background-color: yellow;}
+td:hover {background-color: yellow;}
 
 </style>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 {%if user.is_authenticated%}
@@ -37,6 +36,8 @@ tr:hover {background-color: yellow;}
     <th>Description</th>
         <th>Job</th>
         <th>Notes</th>
+        <th>Date</th>
+        <th>Applied?</th>
 
 
 
@@ -48,6 +49,8 @@ tr:hover {background-color: yellow;}
           <td><center>{{data.Description}}</center></td>
        <td><center>{{data.Job}}</center></td>
        <td><center>{{data.Notes}}</center></td>
+      <td><center>{{data.Date}}</center></td>
+      <td><center>{{data.Applied.}}</center></td>
         {%endif%}
   </tr>
       {% endfor %}
