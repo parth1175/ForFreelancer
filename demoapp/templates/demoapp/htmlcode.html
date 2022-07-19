@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <title>ApplyAway</title>
 <style>
+
   td {
   border: 1px solid black;
   border-collapse: collapse;
   background-color: white;
+  width: 250px;
 }
 
 
-td:hover {background-color: yellow;}
+
+
+
 
 </style>
  <!--
@@ -30,7 +34,10 @@ td:hover {background-color: yellow;}
 <center><h1>ApplyAway</h1></center>
 
 	<center>
-
+<div id="tooltip">
+    <span id="tooltipText">Tooltip Text</span>
+    <span>Hover Over Me</span>
+</div>
 	<table>
 
       <th>url</th>
@@ -48,7 +55,7 @@ td:hover {background-color: yellow;}
       {%if data.user == user.username %}
           <td><center>{{data.url}}</center></td>
     <td><center>{{data.Company}}</center></td>
-          <td><center>{{data.Description}}</center></td>
+      <td><center>{{data.Description}}</center></td>
        <td><center>{{data.Job}}</center></td>
        <td><center>{{data.Notes}}</center></td>
       <td><center>{{data.Date}}</center></td>
