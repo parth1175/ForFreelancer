@@ -10,7 +10,6 @@
   border-collapse: collapse;
   background-color: white;
   width: 1%;
-  word-break: break-all;
 }
 </style>
  <!--
@@ -47,9 +46,9 @@
       {% for data in datas %}
   <tr>
       {%if data.user == user.username %}
-          <td><center>{{data.url}}</center></td>
+          <td style="word-break: break-all;"><center>{{data.url}}</center></td>
     <td><center>{{data.Company}}</center></td>
-      <td><center>{{data.Description}}</center></td>
+      <td style = "width: 5%;"><center>{{data.Description}}</center></td>
        <td><center>{{data.Job}}</center></td>
        <td><center>{{data.Notes}}</center></td>
       <td><center>{{data.Date}}</center></td>
