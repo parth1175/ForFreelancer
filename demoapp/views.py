@@ -56,7 +56,7 @@ def home(request):
             subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
             # print(subtext)
 
-            p = data(user=username, Notes =notes,  url=url, Company=company, Description=subtext, Job = job)
+            p = data(user=username, Notes =notes,  url=url, Company=company, Description=subtext, Job = job, Status=status)
             p.save()
 
 
