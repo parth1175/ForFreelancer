@@ -18,19 +18,23 @@ def home(request):
         #reqs = request.body
         try:
             reqs[:5]
-            username = reqs.split('\n', 1)[0]  ####################################
-            print(username)
+
+
+            status = reqs.split('\n', 1)[0]
+            print(status)
             rest = reqs.split('\n', 1)[1]
 
-            url = rest.split('\n', 1)[0]  #######################################
+            username = rest.split('\n', 1)[0]  #######################################
+            print(username)
+            rest2 = rest.split('\n', 1)[1]
+
+            url = rest2.split('\n', 1)[0]  #############################
             print(url)
-            text = rest.split('\n', 1)[1]
+            text = rest2.split('\n', 1)[1]
 
             notes = text.split('\n', 1)[0]  #############################
             print(notes)
             htmlText = text.split('\n', 1)[1]
-            #processing to retrive the url
-
 
             #processing ti retrieve the company name/job title
 
@@ -50,7 +54,7 @@ def home(request):
             num2 = text.find('<!----> </span>', num1)
             soup = BeautifulSoup (htmlText[num1:num2], 'html.parser')
             subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
-            print(subtext)
+            # print(subtext)
 
             p = data(user=username, Notes =notes,  url=url, Company=company, Description=subtext, Job = job)
             p.save()
