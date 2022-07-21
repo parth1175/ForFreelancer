@@ -31,28 +31,31 @@
 <div id="tooltip">
 
 </div>
-	<table>
+	<table >
 
       <th>url</th>
     <th>Company</th>
     <th>Description</th>
         <th>Job</th>
         <th>Notes</th>
-        <th>Status</th>
+        <th>Date</th>
+        <th>Applied?</th>
 
 
 
       {% for data in datas %}
   <tr>
       {%if data.user == user.username %}
-          <td style="word-break: break-all;"><center>{{data.url}}</center></td>
-    <td><center>{{data.Company}}</center></td>
-      <td style = "width: 5%;"><center>{{data.Description}}</center></td>
+        <td style="word-break: break-all;"><center><a href="{{data.url}}">{{data.url}}</a></center></td>
+        <td><center>{{data.Company}}</center></td>
+       <td style = "width: 5%;"><center>{{data.Description}}</center></td>
        <td><center>{{data.Job}}</center></td>
        <td><center>{{data.Notes}}</center></td>
-      <td><center>{{data.Status}}</center></td>
-
-      <td style = 'background-color: cyan;'><center><a href="{% url 'update-data' data.id %}">Update</a></center></td>
+      <td><center>{{data.Date}}</center></td>
+      <td><center>{{data.Applied}}</center></td>
+      <!--
+       <td style = 'background-color: cyan;'><center><a href="{% url 'update-data' data.id %}">Update</a></center></td>
+       -->
 
         {%endif%}
   </tr>
