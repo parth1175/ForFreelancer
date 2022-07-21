@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class data(models.Model):
@@ -9,5 +10,5 @@ class data(models.Model):
     Job = models.CharField(max_length=1000, default = 'Error')
     Description = models.CharField(max_length=100000, default = 'Great Company')
     Notes =  models.CharField(max_length=10000, default = ' ')
-    #Date = models.CharField(max_length=10000, default=' ')
-    #Applied = models.DateTimeField( default=timezone.now)
+    Applied = models.CharField(max_length=1000, default=' ')
+    Date = models.DateTimeField(default=timezone.now)

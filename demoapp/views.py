@@ -11,14 +11,10 @@ from bs4 import BeautifulSoup
 @csrf_exempt
 def home(request):
 
-
-
     if request.method == 'POST':
         reqs = request.body.decode('utf-8')
-        #reqs = request.body
         try:
             reqs[:5]
-
 
             status = reqs.split('\n', 1)[0]
             print(status)
@@ -56,9 +52,14 @@ def home(request):
             subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
             # print(subtext)
 
-            p = data(user=username, Notes =notes,  url=url, Company=company, Description=subtext, Job = job)
-            p.save()
-
+            Unique = True
+            for i in data.objects.all():
+                if(i.Company == company or i.Job == job):
+                    Unique = False
+                    break
+            if(Unique==True):
+                p = data(user=username, Notes =notes,  url=url, Company=company, Description=subtext, Job = job, Applied = status)
+                p.save()
 
             return JsonResponse(
                 {
@@ -69,20 +70,6 @@ def home(request):
         except KeyError:
             print("wrong!")
             #raise JsonInvalidError
-
-        #send = data.objects.create(user = 'rohanchitrao',url = url, Company_Job=companyJob, Description = subtext )
-        #send.save();
-        #send = data()
-        #send.user = 'rohanchitrao'
-        #send.url = url
-        #send.Company_Job=companyJob
-        #send.Description = subtext
-        #send.save()
-
-
-
-
-
 
     else:
         datas = data.objects.all()
