@@ -11,8 +11,6 @@ from bs4 import BeautifulSoup
 @csrf_exempt
 def home(request):
 
-
-
     if request.method == 'POST':
         reqs = request.body.decode('utf-8')
         #reqs = request.body
@@ -89,3 +87,7 @@ def home(request):
 
         return render(request,'demoapp/htmlcode.html',{'datas':datas})
 # Create your views here.
+
+def update_data(request, data_id):
+    dataid = data.objects.get(pk=data_id)
+    return render(request, 'Update/update.html')
