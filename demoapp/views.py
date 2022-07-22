@@ -1,11 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from demoapp.models import data
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import re
 from bs4 import BeautifulSoup
+from django.template import loader
+from django.urls import reverse
 
 
 @csrf_exempt
@@ -78,5 +80,30 @@ def home(request):
 # Create your views here.
 
 def update_data(request, data_id):
-    dataid = data.objects.get(pk=data_id)
-    return render(request, 'Update/update.html')
+    updata = data.objects.get(id=data_id)
+    template = loader.get_template('Update/update.html')
+    context = {
+        'updata': updata,
+    }
+
+    return HttpResponse(template.render(context, request))
+
+def updaterecord(request, data_id):
+    url = request.POST['url']
+    company = request.POST['company']
+    job = request.POST['job']
+    description = request.POST['description']
+    notes = request.POST['notes']
+    applied = request.POST['applied']
+    #date = request.POST['date']
+    data1 = data.objects.get(id=data_id)
+    data1.url = url
+    data1.Company = company
+    data1.Job = job
+    data1.Description = description
+    data1.Notes = notes
+    data1.Applied = applied
+    #data1.Date = date
+    data1.save()
+    return redirect('/')
+    #return HttpResponseRedirect(reverse('htmlcode'))
