@@ -107,3 +107,9 @@ def updaterecord(request, data_id):
     data1.save()
     return redirect('/')
     #return HttpResponseRedirect(reverse('htmlcode'))
+
+def delete(request, id):
+  data2 = data.objects.get(id=id)
+  data2.delete()
+  return redirect('/')
+  #return HttpResponseRedirect(reverse('index'))

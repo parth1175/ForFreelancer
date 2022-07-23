@@ -54,7 +54,8 @@
       <td><center>{{data.Date}}</center></td>
       <td><center>{{data.Applied}}</center></td>
 
-       <td style = 'background-color: cyan;'><center><a href="{% url 'update-data' data.id %}">Update</a></center></td>
+      <td style = 'background-color: cyan;'><center><a href="{% url 'update-data' data.id %}">Update</a></center></td>
+      <td style = 'background-color: cyan;'><center><a href="{% url 'delete' data.id %}">Delete</a></center></td>
 
 
         {%endif%}
