@@ -52,6 +52,7 @@ def home(request):
             num2 = text.find('<!----> </span>', num1)
             soup = BeautifulSoup (htmlText[num1:num2], 'html.parser')
             subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
+            shortened_subtext = subtext[:200]
             # print(subtext)
 
             Unique = True
@@ -60,7 +61,7 @@ def home(request):
                     Unique = False
                     break
             if(Unique==True):
-                p = data(user=username, Notes =notes,  url=url, Company=company, Description=subtext, Job = job, Applied = status)
+                p = data(user=username, Notes =notes,  url=url, Company=company, Description=shortened_subtext, Job = job, Applied = status)
                 p.save()
 
             return JsonResponse(

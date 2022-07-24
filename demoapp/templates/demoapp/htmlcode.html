@@ -33,7 +33,7 @@
 </div>
 	<table >
 
-      <th>url</th>
+      <th>Job Site Used</th>
     <th>Company</th>
     <th>Description</th>
         <th>Job</th>
@@ -46,7 +46,7 @@
       {% for data in datas %}
   <tr>
       {%if data.user == user.username %}
-        <td style="word-break: break-all;"><center><a href="{{data.url}}">{{data.url}}</a></center></td>
+        <td style="word-break: break-all;"><center><a href="{{data.url}}">{{data.Website}}</a></center></td>
         <td><center>{{data.Company}}</center></td>
        <td style = "width: 5%;"><center>{{data.Description}}</center></td>
        <td><center>{{data.Job}}</center></td>
