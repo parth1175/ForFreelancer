@@ -24,7 +24,7 @@
 <h1><a href="accounts/register">Register</a></h1><br>
 <h1><a href="accounts/login">Login</a></h1>
   {%endif%}
-<body bgcolor="cyan">
+<body bgcolor="#D3D3D3">
 <center><h1>ApplyAway</h1></center>
 
 	<center>
@@ -54,8 +54,8 @@
       <td><center>{{data.Date}}</center></td>
       <td><center>{{data.Applied}}</center></td>
 
-      <td style = 'background-color: cyan;'><center><a href="{% url 'update-data' data.id %}">Update</a></center></td>
-      <td style = 'background-color: cyan;'><center><a href="{% url 'delete' data.id %}">Delete</a></center></td>
+      <td><center><a href="{% url 'update-data' data.id %}">Update</a></center></td>
+      <td><center><a href="{% url 'delete' data.id %}">Delete</a></center></td>
 
 
         {%endif%}
