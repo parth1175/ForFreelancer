@@ -10,6 +10,6 @@ class data(models.Model):
     Company = models.CharField(max_length=1000, default = 'ApplyAway')
     Job = models.CharField(max_length=1000, default = 'Error')
     Description = models.CharField(max_length=100000, default = 'Great Company')
-    Notes =  models.CharField(max_length=10000, default = ' ')
+    Notes =  models.CharField(max_length=10000, default = 'Nothing')
     Applied = models.CharField(max_length=1000, default='Nothing')
     Date = models.DateTimeField(default=timezone.now)
