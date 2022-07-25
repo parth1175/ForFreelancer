@@ -13,3 +13,4 @@ class data(models.Model):
     Notes =  models.CharField(max_length=10000, default = 'Nothing')
     Applied = models.CharField(max_length=1000, default='Nothing')
     Date = models.DateTimeField(default=timezone.now)
+    Status = models.CharField(max_length=100, default='1')
