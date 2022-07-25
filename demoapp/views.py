@@ -61,7 +61,7 @@ def home(request):
                     Unique = False
                     break
             if(Unique==True):
-                p = data(user=username, Notes =notes, url=url, Company=company, Description=shortened_subtext, Job = job, Applied = status)
+                p = data(user=username, Notes =notes, Url=url, Company=company, Description=shortened_subtext, Job = job, Applied = status)
                 p.save()
 
             return JsonResponse(
