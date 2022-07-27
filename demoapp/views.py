@@ -58,6 +58,7 @@ def home(request):
             Unique = True
             for i in data.objects.all():
                 if(i.Company == company or i.Job == job):
+                    print("duplicate found!")
                     Unique = False
                     break
             if(Unique==True):
