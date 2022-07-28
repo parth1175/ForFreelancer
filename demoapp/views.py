@@ -52,7 +52,7 @@ def home(request):
             num2 = text.find('<!----> </span>', num1)
             soup = BeautifulSoup (htmlText[num1:num2], 'html.parser')
             # subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
-            subtext = soup.get_text(strip=true)
+            subtext = soup.get_text(strip=True)
             shortened_subtext = subtext[:200] + "..."
             # print(subtext)
 
