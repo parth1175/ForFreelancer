@@ -37,11 +37,20 @@ times {
   {%endif%}
 <body style="background-color:#34cbcd;">
 <center><h1 class="text-dark"><times>ApplyAway</times></h1></center>
-
 <br>
+
+{%if user.username%}
+{%else%}
+<center>Welcome to ApplyAway!<br> If you need to make a new account,
+click on Register and make sure to register with the same username as used in the web extension. <br> If you need to
+change the username used in the web extension, simply delete and reinstall the web extension.<br> If you are a returning user,
+simply login and ApplyAway!</center>
+{%endif%}
 
 	<center><table style="width:95%">
 <center>
+
+ {%if user.username %}
 
       <th style="background-color:#D3D3D3;"><center>Job Site Used</center></th>
     <th style="background-color:#D3D3D3;"><center>Company</center></th>
@@ -54,12 +63,14 @@ times {
     <th style="background-color:#D3D3D3;"><center></center></th>
 </center>
 
+        {%endif%}
 
-      {% for data in datas %}
+{% for data in datas %}
+{%if data.user == user.username %}
 
   <tr class="border">
-      {%if data.user == user.username %}
-        <td class="border border-5" style="word-break: break-all;"><center><a href="{{data.url}}">{{data.Website}}</a></center></td>
+
+        <td class="border border-5" style="word-break: break-all;"><center><a href="{{data.Url}}">{{data.Website}}</a></center></td>
         <td class="border border-5"><center>{{data.Company}}</center></td>
        <td class="border border-5" style = "width: 5%;">{{data.Description}}</td>
        <td class="border border-5"><center>{{data.Job}}</center></td>
@@ -71,10 +82,12 @@ times {
       <td><center><a href="{% url 'delete' data.id %}">Delete</a></center></td>
 
 
-        {%endif%}
-  </tr>
 
-      {% endfor %}
+  </tr>
+ {%endif%}
+        {% endfor %}
+
+
 
 
 </table>
