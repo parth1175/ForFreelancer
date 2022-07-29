@@ -54,6 +54,7 @@ def home(request):
             # subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
             subtext = soup.get_text(strip=True)
             shortened_subtext = subtext[:200] + "..."
+            print(subtext[:100])
             # print(subtext)
 
             #Unique = True
