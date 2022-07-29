@@ -56,15 +56,15 @@ def home(request):
             shortened_subtext = subtext[:200] + "..."
             # print(subtext)
 
-            Unique = True
-            for i in data.objects.all():
-                if(i.Company == company or i.Job == job):
-                    print("duplicate found!")
-                    Unique = False
-                    break
-            if(Unique==True):
-                p = data(user=username, Notes =notes, Url=url, Company=company, Description=shortened_subtext, Job = job, Applied = status)
-                p.save()
+            #Unique = True
+            #for i in data.objects.all():
+            #    if(i.Company == company or i.Job == job):
+            #        print("duplicate found!")
+            #        Unique = False
+            #        break
+            #if(Unique==True):
+            p = data(user=username, Notes =notes, Url=url, Company=company, Description=shortened_subtext, Job = job, Applied = status)
+            p.save()
 
             return JsonResponse(
                 {
