@@ -117,3 +117,20 @@ def delete(request, id):
   data2.delete()
   return redirect('/')
   #return HttpResponseRedirect(reverse('index'))
+
+def add(request):
+  template = loader.get_template('Add/add.html')
+  return HttpResponse(template.render({}, request))
+
+def addrecord(request):
+    username = request.user.username
+    url = request.POST['url']
+    website = request.POST['website']
+    company = request.POST['company']
+    job = request.POST['job']
+    description = request.POST['description']
+    notes = request.POST['notes']
+    applied = request.POST['applied']
+    data2 = data(user=username, Url=url, Website=website, Company=company, Job=job, Description=description, Notes=notes, Applied=applied)
+    data2.save()
+    return redirect('/')
