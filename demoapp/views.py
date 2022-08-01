@@ -28,33 +28,122 @@ def home(request):
 
             url = rest2.split('\n', 1)[0]  #############################
             print(url)
-            text = rest2.split('\n', 1)[1]
+            textNotes = rest2.split('\n', 1)[1]
 
-            notes = text.split('\n', 1)[0]  #############################
+            notes = textNotes.split('\n', 1)[0]  #############################
             print(notes)
-            htmlText = text.split('\n', 1)[1]
+            text = textNotes.split('\n', 1)[1]
 
             #processing ti retrieve the company name/job title
 
-            result = re.search('<title>(.*) | LinkedIn</title>', htmlText)
-            try:
-                companyJob = result.group(1)
-                companyJob = companyJob[4:]
-                companyJob = companyJob[:-2]
+            # result = re.search('<title>(.*) | LinkedIn</title>', htmlText)
+            # try:
+            #     companyJob = result.group(1)
+            #     companyJob = companyJob[4:]
+            #     companyJob = companyJob[:-2]
+            #
+            # except AttributeError:
+            #     companyJob= result
+            # print(companyJob)
+            #
+            # job = (companyJob.split('|', 1)[0])[:-1]  ################################
+            # company = (companyJob.split('|', 1)[1])[1:]
+            # #processing to retrieve the description
+            # num1 = text.find('<!----> <span>')
+            # num2 = text.find('<!----> </span>', num1)
+            # soup = BeautifulSoup (htmlText[num1:num2], 'html.parser')
+            # # subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
+            # subtext = soup.get_text(strip=True)
+            # shortened_subtext = subtext[:200] + "..."
+            # print(subtext[:100])
 
-            except AttributeError:
-                companyJob= result
-            print(companyJob)
-            job = (companyJob.split('|', 1)[0])[:-1]  ################################
-            company = (companyJob.split('|', 1)[1])[1:]
-            #processing to retrieve the description
-            num1 = text.find('<!----> <span>')
-            num2 = text.find('<!----> </span>', num1)
-            soup = BeautifulSoup (htmlText[num1:num2], 'html.parser')
-            # subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
-            subtext = soup.get_text(strip=True)
+            handshake_identifier = "handshake-production-cdn"
+            linkedin_identifier = "linkedin-logo"
+            zip_identifier = "www.ziprecruiter.com"
+            indeed_identifier = "indeed_gnav"
+            meta_identifier = "About Meta"
+
+            if linkedin_identifier in text:
+                num1 = text.find('<!----> <span>')
+                num2 = text.find('<!----> </span>')
+                result = re.search('<title>(.*)| LinkedIn</title>', text)
+                try:
+                    companyJob = result.group(1)
+                    companyJob = companyJob[4:]
+                    companyJob = companyJob[:-2]
+                except AttributeError:
+                    companyJob = result
+                job = (companyJob.split('|', 1)[0])[:-1]  ################################
+                company = (companyJob.split('|', 1)[1])[1:]
+                print(companyJob)
+
+            elif handshake_identifier in text:
+                peer_exp = '<h2 class="style__heading___3liBJ style__heading___29i1Z style__large___15W-p">Ask a peer about their experience'
+                if peer_exp in text:
+                    num1 = text.find('<h2 class="style__role-description-title___2aHXu style__heading___29i1Z style__large___15W-p">')
+                    num2 = text.find(peer_exp)
+                else:
+                    num1 = text.find('<h2 class="style__role-description-title___2aHXu style__heading___29i1Z style__large___15W-p">')
+                    num2 = text.find('class="style__container___L2N8n"><h2 class="style__title___1Smoz style__heading___29i1Z style__large___15W-p">')
+                result = re.search('<title>(.*)| Handshake</title>', text)
+                try:
+                    companyJob = result.group(1)
+                    companyJob = companyJob[4:]
+                    companyJob = companyJob[:-20]
+                except AttributeError:
+                    companyJob = result
+                job = (companyJob.split('|', 1)[0])[:-1]
+                company = (companyJob.split('|', 1)[1])[1:]
+                print(job)
+                print(company)
+
+            elif zip_identifier in text:
+                num1 = text.find('<div class="jobDescriptionSection">')
+                num2 = text.find('<p class="report_job">')
+                result = re.search('"hiring_company_text t_company_name">(.*) </span>', text)
+                soup = BeautifulSoup(result.group(1), 'html.parser')
+                company = (soup.get_text('\n','\n\n')).replace('\n', ' ')
+                print(company)
+                dragondese = re.search("name: '(.*)',\nlocation:", text)
+                job = dragondese.group(1)
+                print(job)
+
+            elif meta_identifier in text:
+                num1 = text.find('<div class="_3gel _3gfe _3gef _3gee _8lfv _3-8p _8lfv _3-8p"><div class="_25x1 _25x7 _25xj _1ilv _1iot _38g3 _3geg _38g4 _38g5" style="background-color: ">')
+                num2 = text.find('<div class="_97fe _1n-z _6hy- _8lfs">Locations')
+                result = re.search('<meta property="og:title" content="(.*)"><meta property="og:description"', text)
+                soup = BeautifulSoup(result.group(1), 'html.parser')
+                job = (soup.get_text('\n','\n\n')).replace('\n', ' ')
+                print(job)
+                company = "Meta"
+                print(company)
+
+
+
+            soup = BeautifulSoup(text[num1:num2], 'html.parser')
+            subtext = (soup.get_text('\n','\n\n')).replace('\n', ' ')
+            print(subtext)
             shortened_subtext = subtext[:200] + "..."
             print(subtext[:100])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             # print(subtext)
 
             #Unique = True
