@@ -70,7 +70,7 @@ def home(request):
                 try:
                     companyJob = result.group(1)
                     companyJob = companyJob[4:]
-                    companyJob = companyJob[:-2]
+                    companyJob = companyJob[:-18]
                 except AttributeError:
                     companyJob = result
                 job = (companyJob.split('|', 1)[0])[:-1]  ################################
