@@ -34,6 +34,10 @@ def home(request):
             print(notes)
             text = textNotes.split('\n', 1)[1]
 
+
+            rawSite = re.search("^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)", url)
+            SiteName = rawSite.group(1)
+
             #processing ti retrieve the company name/job title
 
             # result = re.search('<title>(.*) | LinkedIn</title>', htmlText)
@@ -153,7 +157,7 @@ def home(request):
             #        Unique = False
             #        break
             #if(Unique==True):
-            p = data(user=username, Notes =notes, Url=url, Company=company, Description=shortened_subtext, Job = job, Applied = status)
+            p = data(user=username, Website=SiteName, Notes =notes, Url=url, Company=company, Description=shortened_subtext, Job = job, Applied = status)
             p.save()
 
             return JsonResponse(

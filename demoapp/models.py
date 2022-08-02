@@ -5,7 +5,7 @@ from django.utils import timezone
 # Create your models here.
 class data(models.Model):
     user = models.CharField(max_length=100, default = 'missing')
-    Website = models.CharField(max_length=100, default = 'LinkedIn')
+    Website = models.CharField(max_length=100, default = 'missing')
     Url = models.CharField(max_length=1000, default = 'missing')
     Company = models.CharField(max_length=1000, default = 'missing')
     Job = models.CharField(max_length=1000, default = 'missing')
