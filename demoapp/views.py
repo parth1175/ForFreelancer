@@ -75,7 +75,7 @@ def home(request):
                 num1 = text.find('<!----> <span>')
                 print("num1")
                 print(num1)
-                num2 = text.find('<!----> </span>')
+                num2 = text.find('<!----> </span>', num1)
                 print("num2")
                 print(num2)
                 result = re.search('<title>(.*)| LinkedIn</title>', text)
