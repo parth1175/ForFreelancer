@@ -14,6 +14,8 @@ from django.urls import reverse
 def home(request):
     num1=0
     num2=0
+    company = ""
+    job = ""
 
     if request.method == 'POST':
         reqs = request.body.decode('utf-8')
@@ -71,7 +73,11 @@ def home(request):
 
             if linkedin_identifier in text:
                 num1 = text.find('<!----> <span>')
+                print("num1")
+                print(num1)
                 num2 = text.find('<!----> </span>')
+                print("num2")
+                print(num2)
                 result = re.search('<title>(.*)| LinkedIn</title>', text)
                 try:
                     companyJob = result.group(1)
