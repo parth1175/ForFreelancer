@@ -12,6 +12,8 @@ from django.urls import reverse
 
 @csrf_exempt
 def home(request):
+    num1=0
+    num2=0
 
     if request.method == 'POST':
         reqs = request.body.decode('utf-8')
