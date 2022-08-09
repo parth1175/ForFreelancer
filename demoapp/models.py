@@ -14,3 +14,14 @@ class data(models.Model):
     Applied = models.CharField(max_length=1000, default='Missing')
     Date = models.DateTimeField(default=timezone.now)
 
+
+class EBooksModel(models.Model):
+    title = models.CharField(max_length=80)
+    pdf = models.FileField(upload_to='pdfs/')
+
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return f"{self.title}"
+

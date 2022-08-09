@@ -42,7 +42,13 @@ times {
 <br>
 
 {%if user.username%}
+<!--
+<a href="{% url 'resume' %}">Add Resume</a>
+-->
 {%else%}
+<a href="{% url 'privacy' %}">Privacy Policy</a>
+
+
 <table>
 <center><td><center>Welcome to ApplyAway!<br>
     If you need to make a new account,

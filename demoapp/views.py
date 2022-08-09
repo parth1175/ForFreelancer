@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from demoapp.models import data
+from demoapp.forms import UploadBookForm
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -235,3 +236,24 @@ def addrecord(request):
     data2 = data(user=username, Url=url, Website=website, Company=company, Job=job, Description=description, Notes=notes, Applied=applied)
     data2.save()
     return redirect('/')
+
+def resume(request):
+    template = loader.get_template('Resume/resume.html')
+    return HttpResponse(template.render({}, request))
+
+def BookUploadView(request):
+    if request.method == 'POST':
+        form = UploadBookForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('The file is saved')
+    else:
+        form = UploadBookForm()
+        context = {
+            'form':form,
+        }
+    return render(request, 'Resume/resume.html', context)
+
+def privacy(request):
+    template = loader.get_template('Privacy/privacy.html')
+    return HttpResponse(template.render({}, request))
