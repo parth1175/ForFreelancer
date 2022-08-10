@@ -43,29 +43,6 @@ def home(request):
             rawSite = re.search("^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)", url)
             SiteName = rawSite.group(1)
 
-            #processing ti retrieve the company name/job title
-
-            # result = re.search('<title>(.*) | LinkedIn</title>', htmlText)
-            # try:
-            #     companyJob = result.group(1)
-            #     companyJob = companyJob[4:]
-            #     companyJob = companyJob[:-2]
-            #
-            # except AttributeError:
-            #     companyJob= result
-            # print(companyJob)
-            #
-            # job = (companyJob.split('|', 1)[0])[:-1]  ################################
-            # company = (companyJob.split('|', 1)[1])[1:]
-            # #processing to retrieve the description
-            # num1 = text.find('<!----> <span>')
-            # num2 = text.find('<!----> </span>', num1)
-            # soup = BeautifulSoup (htmlText[num1:num2], 'html.parser')
-            # # subtext = (soup.get_text('\n','\n\n')).replace('\n', '')
-            # subtext = soup.get_text(strip=True)
-            # shortened_subtext = subtext[:200] + "..."
-            # print(subtext[:100])
-
             handshake_identifier = "handshake-production-cdn"
             linkedin_identifier = "linkedin-logo"
             zip_identifier = "www.ziprecruiter.com"
@@ -140,32 +117,6 @@ def home(request):
             print(subtext[:100])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            # print(subtext)
-
-            #Unique = True
-            #for i in data.objects.all():
-            #    if(i.Company == company or i.Job == job):
-            #        print("duplicate found!")
-            #        Unique = False
-            #        break
-            #if(Unique==True):
             p = data(user=username, Website=SiteName, Notes =notes, Url=url, Company=company, Description=shortened_subtext, Job = job, Applied = status)
             p.save()
 
@@ -237,22 +188,22 @@ def addrecord(request):
     data2.save()
     return redirect('/')
 
-def resume(request):
-    template = loader.get_template('Resume/resume.html')
-    return HttpResponse(template.render({}, request))
+#def resume(request):
+#    template = loader.get_template('Resume/resume.html')
+#    return HttpResponse(template.render({}, request))
 
-def BookUploadView(request):
-    if request.method == 'POST':
-        form = UploadBookForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('The file is saved')
-    else:
-        form = UploadBookForm()
-        context = {
-            'form':form,
-        }
-    return render(request, 'Resume/resume.html', context)
+#def BookUploadView(request):
+#    if request.method == 'POST':
+#        form = UploadBookForm(request.POST,request.FILES)
+#        if form.is_valid():
+#            form.save()
+#            return HttpResponse('The file is saved')
+#    else:
+#        form = UploadBookForm()
+#        context = {
+#            'form':form,
+#        }
+#    return render(request, 'Resume/resume.html', context)
 
 def privacy(request):
     template = loader.get_template('Privacy/privacy.html')
