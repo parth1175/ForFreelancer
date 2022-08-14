@@ -208,3 +208,7 @@ def addrecord(request):
 def privacy(request):
     template = loader.get_template('Privacy/privacy.html')
     return HttpResponse(template.render({}, request))
+
+def settings(request):
+    template = loader.get_template('Settings/settings.html')
+    return HttpResponse(template.render({}, request))

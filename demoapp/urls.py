@@ -11,4 +11,5 @@ urlpatterns = [
     #path('Resume/resume/', views.resume, name='resume'),
     #path('book/upload', views.BookUploadView, name ='BookUploadView'),
     path('Privacy/privacy/', views.privacy, name='privacy'),
+    path('Settings/settings/', views.settings, name='settings'),
 ]
