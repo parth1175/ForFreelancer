@@ -40,9 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'corsheaders',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,7 +57,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'firstdraft.urls'
-
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -81,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ApplyAwayData1',
         'USER':'postgres',
-        'PASSWORD':'firstphone13',
+        'PASSWORD':'qwe123QWE!@#',
         'HOST':'localhost'
     }
 #    'Heroku' : {
@@ -125,7 +131,7 @@ TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
